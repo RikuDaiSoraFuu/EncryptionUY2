@@ -11,7 +11,7 @@ def xor_encrypt(data, key):
         encrypted.append(data[i] ^ key[i % len(key)])
     return encrypted
 
-@app.route('/encrypt', methods=['POST'])
+@app.route('/encrypt', methods=['GET', 'POST', 'OPTIONS'])
 def encrypt():
     if 'file' not in request.files:
         return "No file uploaded", 400
