@@ -25,7 +25,7 @@ def index():
     '''
     return render_template_string(html_form)
 
-@app.route('/encrypt', methods=['POST'])
+@app.route('/encrypt', methods=['GET','POST','OPTIONS'])
 def encrypt():
     if 'file' not in request.files:
         return "No file uploaded", 400
