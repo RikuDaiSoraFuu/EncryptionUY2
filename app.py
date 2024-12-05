@@ -11,6 +11,20 @@ def xor_encrypt(data, key):
         encrypted.append(data[i] ^ key[i % len(key)])
     return encrypted
 
+@app.route('/')
+def index():
+    # シンプルなHTMLフォームを提供
+    html_form = '''
+    <!doctype html>
+    <title>File Encryption</title>
+    <h1>Upload a file to encrypt</h1>
+    <form method="POST" action="/encrypt" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Encrypt</button>
+    </form>
+    '''
+    return render_template_string(html_form)
+    
 @app.route('/encrypt', methods=['GET', 'POST', 'OPTIONS'])
 def encrypt():
     if 'file' not in request.files:
